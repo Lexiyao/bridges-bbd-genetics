@@ -144,3 +144,9 @@ FDR: Benjamini-Hochberg across 9 genes (Obj 1) or 15 exposure-outcome pairs (Obj
 | European ancestry restriction (ethnicityClass == 1) | Reduces population stratification; PCs not available in released phenotype file |
 | Complete case analysis for hormonal variables | MNAR by study centre; MI assumptions not met |
 | No PC adjustment | PC columns absent from BRIDGES phenotype file v17; limitation documented in Section 5.4 |
+
+## License
+
+The code in this repository is released under the [MIT License](LICENSE)
+(© 2026 Zixi Yao). Individual-level BRIDGES/BCAC data are not covered by this
+license and remain controlled-access (see "Data and code availability").
