@@ -1,0 +1,56 @@
+Independent Carrier-Count Verification
+Run: 2026-06-23 13:14:22
+============================================================
+Method: cohort IDs from phenotype; carriers tallied directly from raw
+genotype files (dominant, value>=1). Independent of analysis scripts.
+
+-- BBD truncating --
+  BRCA1   cases 2/2 OK   ctrls 11/11 OK
+  BRCA2   cases 11/11 OK   ctrls 25/25 OK
+  PALB2   cases 0/0 OK   ctrls 12/12 OK
+  CHEK2   cases 6/6 OK   ctrls 107/107 OK
+  ATM     cases 3/3 OK   ctrls 32/32 OK
+  BARD1   cases 2/2 OK   ctrls 8/8 OK
+  RAD51C  cases 2/2 OK   ctrls 9/9 OK
+  RAD51D  cases 1/1 OK   ctrls 8/8 OK
+  TP53    cases 1/1 OK   ctrls 0/0 OK
+-- DCIS truncating --
+  BRCA1   cases 3/3 OK   ctrls 41/41 OK
+  BRCA2   cases 14/14 OK   ctrls 94/94 OK
+  PALB2   cases 6/6 OK   ctrls 39/39 OK
+  CHEK2   cases 40/40 OK   ctrls 216/216 OK
+  ATM     cases 18/18 OK   ctrls 100/100 OK
+  BARD1   cases 1/1 OK   ctrls 21/21 OK
+  RAD51C  cases 1/1 OK   ctrls 19/19 OK
+  RAD51D  cases 0/0 OK   ctrls 14/14 OK
+  TP53    cases 1/1 OK   ctrls 3/3 OK
+-- LCIS truncating --
+  BRCA1   cases 0/0 OK   ctrls 41/41 OK
+  BRCA2   cases 0/0 OK   ctrls 94/94 OK
+  PALB2   cases 0/0 OK   ctrls 39/39 OK
+  CHEK2   cases 1/1 OK   ctrls 216/216 OK
+  ATM     cases 0/0 OK   ctrls 100/100 OK
+  BARD1   cases 0/0 OK   ctrls 21/21 OK
+  RAD51C  cases 0/0 OK   ctrls 19/19 OK
+  RAD51D  cases 2/2 OK   ctrls 14/14 OK
+  TP53    cases 0/0 OK   ctrls 3/3 OK
+-- DCIS missense --
+  BRCA1   cases 12/12 OK   ctrls 277/277 OK
+  BRCA2   cases 35/35 OK   ctrls 674/674 OK
+  PALB2   cases 12/12 OK   ctrls 185/185 OK
+  CHEK2   cases 36/36 OK   ctrls 337/337 OK
+  ATM     cases 61/61 OK   ctrls 1168/1168 OK
+  BARD1   cases 12/12 OK   ctrls 139/139 OK
+  RAD51C  cases 4/4 OK   ctrls 114/114 OK
+  RAD51D  cases 1/1 OK   ctrls 97/97 OK
+  TP53    cases 9/9 OK   ctrls 62/62 OK
+
+============================================================
+VERDICT: 72 of 72 carrier counts re-verified; 0 mismatch(es).
+ALL carrier counts independently confirmed correct (incl. small counts).
+
+Note: the truncating/missense genotype files contain no missing calls
+(verified in data_QC.R), so small counts reflect true rarity of these
+genes (e.g. TP53, RAD51D), not missing data.
+
+Saved: outputs/QC/carrier_count_verification.xlsx

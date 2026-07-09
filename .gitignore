@@ -1,0 +1,27 @@
+# Raw BRIDGES data — never commit (data governance requirement)
+concept_807_zhang_bridges_*.csv
+concept_807_zhang_bridges_*.txt
+
+# R environment files
+.RData
+.RDataTmp
+.Rhistory
+.Rproj.user/
+
+# macOS
+.DS_Store
+
+# Temporary files
+*~
+*.tmp
+
+# Consolidated handover package (duplicates of already-tracked files)
+Dissertation_Package_20260621/
+Dissertation_Package_20260621.zip
+
+# Backup / scratch DOCX snapshots (safety copies — keep on disk, never commit)
+*BACKUP*.docx
+*_backup_*.docx
+*abstract-synced*.docx
+~$*
+outputs/figures/_wald_backup/

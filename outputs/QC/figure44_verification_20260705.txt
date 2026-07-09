@@ -1,0 +1,69 @@
+======================================================================
+  FIGURE VERIFICATION REPORT
+======================================================================
+  Figure    : Figure 4.4 — stage-of-progression slopegraph
+              ("Where each truncating-variant effect emerges along the
+               benign-to-in-situ progression")
+  Deliverable: Dissertation_Package_20260621 2/Dissertation_FINAL_restyled_ACCEPTED.docx
+               (assembled thesis, p.16; also 04_Results_FINAL_unified_ACCEPTED.docx)
+  Rendered   : outputs/QC/figures/figure44_rendered_20260705.png
+  Check date : 2026-07-05
+  Method     : Rendered accepted DOCX -> PDF (LibreOffice) -> PNG (pdftoppm);
+               every plotted value, CI, FDR flag and caption claim compared
+               against the verified source result workbooks. No model refit.
+
+  Source of truth:
+    - Benign (BBD) stage : outputs/tables/BBD_truncating_FINAL.xlsx :: BBD vs Controls
+    - DCIS stage         : outputs/tables/DCIS_LCIS_truncating_results.xlsx :: DCIS_truncating
+    - LCIS / subtypes    : same workbooks (carrier counts for "not plotted" note)
+
+======================================================================
+  LEVEL 1 — PLOTTED POINT ESTIMATES, CIs AND FDR FLAGS
+======================================================================
+  Gene   Stage    Source OR (95% CI)        Source FDR   Plot marker      Match
+  -----  -------  ------------------------  -----------  ---------------  -----
+  ATM    Benign   0.60 (0.15-1.77)          No           open  ~0.60      PASS
+  ATM    DCIS     3.99 (2.13-7.02)          Yes          filled 3.99      PASS
+  CHEK2  Benign   0.47 (0.18-1.02)          No           open  ~0.47      PASS
+  CHEK2  DCIS     2.66 (1.51-4.42)          Yes          filled 2.66      PASS
+  BRCA2  Benign   2.87 (1.23-6.63)          No           open  ~2.87      PASS
+  BRCA2  DCIS     2.82 (1.43-5.17)          Yes          filled 2.82      PASS
+
+  [PASS] All six point estimates match source workbooks.
+  [PASS] All six CIs match (error-bar spans consistent on log axis).
+  [PASS] Filled/open markers correctly encode BH-FDR q<0.05
+         (filled = ATM/CHEK2/BRCA2 at DCIS; open = all benign).
+
+======================================================================
+  LEVEL 2 — CAPTION CLAIMS
+======================================================================
+  [PASS] "ATM and CHEK2 are null at the benign stage and reach significance
+          only at DCIS": ATM 0.60->3.99, CHEK2 0.47->2.66; benign FDR No,
+          DCIS FDR Yes. Consistent.
+  [PASS] "whereas BRCA2 is elevated at both": BRCA2 2.87 (benign) and 2.82
+          (DCIS); both point estimates >1, both CIs exclude 1. Supported.
+  [PASS] "Histological subtypes and LCIS rest on 0-3 carriers and are not
+          plotted": LCIS carrier counts BRCA2=0, CHEK2=1, ATM=0; non-prolif
+          BRCA2=2, CHEK2=3, ATM=1; prolif BRCA2=2, CHEK2=0, ATM=1. Range 0-3.
+  [PASS] "Firth penalised logistic regression, adjusted for age and study;
+          95% profile-likelihood intervals": matches Methods and workbook
+          provenance (estimator column = Firth).
+  [PASS] Cross-sectional caveat present: "the horizontal axis orders lesions
+          by histological severity rather than by time within an individual;
+          the figure ... does not depict within-woman progression."
+
+======================================================================
+  NOTED NUANCE (not an error)
+======================================================================
+  BRCA2 at the benign stage is NOMINALLY significant (p = 0.015; CI 1.23-6.63
+  excludes 1) but is drawn OPEN because it does not survive BH-FDR correction
+  (p-FDR = 0.139). This is consistent with the figure legend rule
+  "Filled = FDR q < 0.05" and with the caption wording "elevated" (not
+  "significant") at the benign stage.
+
+======================================================================
+  VERDICT
+======================================================================
+  [PASS] Figure 4.4 is faithful to the verified source result tables.
+         No numerical or labelling discrepancy found.
+======================================================================
