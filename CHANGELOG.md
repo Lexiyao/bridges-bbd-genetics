@@ -4,6 +4,12 @@ All notable changes to the analysis code and aggregate outputs in this
 repository are documented here. The dissertation document is a separate
 deliverable and is not tracked in this repository.
 
+## v1.0.1 — License and DOI
+
+- Added the MIT License (© 2026 Zixi Yao).
+- Recorded the Zenodo concept DOI (all versions):
+  [10.5281/zenodo.21280365](https://doi.org/10.5281/zenodo.21280365).
+
 ## v1.0.0 — Initial public release
 
 - First public, citable release of the analysis code and non-disclosive

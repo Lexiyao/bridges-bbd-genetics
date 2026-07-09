@@ -1,5 +1,7 @@
 # Genetic Associations Between Benign Breast Disease, Carcinoma in Situ and Breast Cancer
 
+[![DOI](https://zenodo.org/badge/1295265855.svg)](https://doi.org/10.5281/zenodo.21280365)
+
 MPhil in Population Health Sciences, University of Cambridge, 2025–26
 
 ## Project Overview
@@ -13,7 +15,7 @@ Data source: BRIDGES/BCAC consortium, phenotype file v17.
 This repository contains the analysis code and aggregate (non-disclosive)
 outputs for the dissertation. A citable snapshot is archived on Zenodo:
 
-> DOI: *to be assigned on release* — cite the "all versions" (concept) DOI.
+> Concept DOI (all versions): [10.5281/zenodo.21280365](https://doi.org/10.5281/zenodo.21280365)
 
 The dissertation document itself is a separate deliverable and is not
 redistributed here. See the [CHANGELOG](CHANGELOG.md) for version history.
@@ -93,7 +95,7 @@ Run in order:
 ## Data and code availability
 
 The analysis code in this repository is openly available and archived with a
-persistent identifier on Zenodo (DOI: *to be assigned on release*).
+persistent identifier on Zenodo (concept DOI: [10.5281/zenodo.21280365](https://doi.org/10.5281/zenodo.21280365)).
 
 Individual-level BRIDGES phenotype and genotype data were accessed under an
 approved BCAC secondary-use agreement and **cannot be redistributed**. Raw
