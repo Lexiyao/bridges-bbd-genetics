@@ -80,7 +80,8 @@ Run in order:
 4. `scripts/missense_analysis_corrected.R` — All missense models (BBD, DCIS, LCIS) → `missense_results_FINAL.xlsx`
 5. `scripts/objective2_hormonal_analysis.R` — Hormonal/reproductive factors → `objective2_hormonal_corrected.xlsx`
 6. `scripts/sensitivity_familial_population.R` — ascertainment sensitivity (all-studies vs population-only vs famHist-adjusted) → `sensitivity_familial_population.xlsx`
-7. `scripts/export_all_results.R` — (optional) combine results if running from a joint session
+7. `scripts/karma_bbd_sensitivity.R` — KARMA-updated BBD-status robustness (primary vs drop-all-KARMA vs updated) → `karma_bbd_sensitivity.xlsx` (KARMA update not distributed)
+8. `scripts/export_all_results.R` — (optional) combine results if running from a joint session
 
 **Verification / audit (independent of the analysis, run any time):**
 - `scripts/verify_carrier_counts.R` — re-counts every Carriers(cases)/Carriers(controls) value straight from the raw genotype files and compares to the result tables → `outputs/QC/carrier_count_verification.xlsx` (72/72 confirmed, 0 mismatch).

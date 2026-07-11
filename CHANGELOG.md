@@ -4,6 +4,18 @@ All notable changes to the analysis code and aggregate outputs in this
 repository are documented here. The dissertation document is a separate
 deliverable and is not tracked in this repository.
 
+## v1.0.2 — KARMA-updated BBD sensitivity
+
+- Added `scripts/karma_bbd_sensitivity.R`: robustness of the BBD truncating-variant
+  results to the KARMA study's updated BBD-status data, comparing the primary,
+  KARMA-excluded (drop-all) and KARMA-updated cohorts across the nine genes and the
+  overall / non-proliferative / proliferative panels. *BRCA2* overall remains the
+  only nominally significant, stable association (OR 2.87); no gene reaches FDR
+  significance in any panel or version.
+- The KARMA update and individual-level data are not distributed (data agreement);
+  only the code is released. Aggregate cells with <5 carriers are non-disclosive
+  and are not included.
+
 ## v1.0.1 — License and DOI
 
 - Added the MIT License (© 2026 Zixi Yao).
