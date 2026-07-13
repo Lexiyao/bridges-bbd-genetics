@@ -1,0 +1,6 @@
+"Gene","Variant class","OR","95% CI","Carrier cases","p","BFDP","Interpretation"
+"ATM","Truncating",3.99,"2.13-7.02",18,6e-05,0,"noteworthy (<0.05)"
+"CHEK2","Truncating",2.66,"1.51-4.42",40,0.0011,0.01,"noteworthy (<0.05)"
+"CHEK2","Missense",2.01,"1.29-3.00",36,0.003,0.028,"noteworthy (<0.05)"
+"BRCA2","Truncating",2.82,"1.43-5.17",14,0.0041,0.035,"noteworthy (<0.05)"
+"TP53","Missense",3.65,"1.51-7.76",9,0.006,0.046,"noteworthy (<0.05)"

@@ -87,6 +87,12 @@ Run in order:
 - `scripts/verify_carrier_counts.R` — re-counts every Carriers(cases)/Carriers(controls) value straight from the raw genotype files and compares to the result tables → `outputs/QC/carrier_count_verification.xlsx` (72/72 confirmed, 0 mismatch).
 - `scripts/compare_ci_methods.R` — confirms Wald vs profile-likelihood CIs are materially identical for the significant DCIS genes → `outputs/tables/ci_method_check.xlsx`.
 
+**Credibility grading and exhibits (run after the analysis scripts above):**
+- `scripts/bfdp_analysis.R` — Wakefield (2007) Bayesian false-discovery probability for every DCIS gene association, complementing the Benjamini–Hochberg FDR, with a 3/5/8 prior-OR sensitivity sweep → `outputs/tables/BFDP_analysis_DCIS.csv`, `BFDP_prior_sensitivity.csv`, `Table_4_3a_BFDP.csv`. Five associations are BH-significant and credible (ATM, CHEK2 truncating & missense, BRCA2, TP53 missense); four are robust across all priors and TP53-missense is prior-sensitive (BFDP 0.071 at the tightest prior).
+- `scripts/figure_4_3_volcano.R` — Figure 4.3: BFDP-encoded volcano of the DCIS associations (x = log₂ OR, y = −log₁₀ p, colour = BFDP, shape = variant class) → `outputs/figures/figure_4_3_volcano.png` (+ vector PDF).
+- `scripts/appendix_figures_A1_A15.R` — Appendix A supplementary figures A1–A15 (per-outcome and per-subtype forest plots, cohort QC, ascertainment sensitivity, leave-one-study-out, carrier depletion) → `outputs/figures/appendix/`. Forest panels are drawn from the saved result tables; QC panels A11/A12/A15 read the phenotype/genotype files directly.
+- `scripts/evalue_atm.R` — E-value (VanderWeele and Ding, 2017) for the strongest DCIS association, *ATM* protein-truncating variants (OR 3.99): E-value 7.44 for the point estimate and 3.68 for the lower confidence bound, quantifying how strong an unmeasured confounder or residual selection effect would need to be to explain the association away. Cross-checked against the `EValue` package.
+
 ## Computational Environment
 
 - R 4.5.2 (2025-10-31), macOS 14 (Sonoma)
