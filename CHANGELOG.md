@@ -4,6 +4,16 @@ All notable changes to the analysis code and aggregate outputs in this
 repository are documented here. The dissertation document is a separate
 deliverable and is not tracked in this repository.
 
+## v1.0.4 — E-value sensitivity analysis
+
+- Added `scripts/evalue_atm.R`: E-value (VanderWeele and Ding, 2017) for the
+  strongest DCIS association, *ATM* protein-truncating variants (OR 3.99).
+  E-value for the point estimate is 7.44 and for the lower confidence bound
+  3.68, so an unmeasured confounder or residual selection effect would need a
+  risk-ratio association of at least 3.68 with both *ATM* carriage and DCIS,
+  beyond the age and study adjustment, to reduce the association to
+  non-significance. Cross-checked against the `EValue` package (identical).
+
 ## v1.0.3 — BFDP credibility analysis, Figure 4.3, and Appendix A figures
 
 - Added `scripts/bfdp_analysis.R`: Wakefield (2007) Bayesian false-discovery
