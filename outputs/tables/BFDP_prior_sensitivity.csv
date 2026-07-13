@@ -1,0 +1,6 @@
+"Association","OR","CI","BFDP(OR97.5=3)","BFDP(OR97.5=5)","BFDP(OR97.5=8)","Verdict"
+"ATM PTV",3.99,"2.13-7.02",0.001,0,0,"robust"
+"CHEK2 PTV",2.66,"1.51-4.42",0.013,0.01,0.01,"robust"
+"CHEK2 missense",2.01,"1.29-3.00",0.028,0.028,0.031,"robust"
+"BRCA2 PTV",2.82,"1.43-5.17",0.046,0.035,0.034,"robust"
+"TP53 missense",3.65,"1.51-7.76",0.071,0.046,0.041,"prior-sensitive"
