@@ -31,9 +31,14 @@
 # DATA GOVERNANCE: outputs are non-disclosive summary statistics only.
 # =============================================================================
 
-suppressMessages({ library(ggplot2); library(dplyr); library(readxl); library(tidyr); library(readr); library(purrr) })
+suppressMessages({ library(ggplot2); library(dplyr); library(readxl); library(tidyr); library(readr); library(purrr); library(stringr) })
 source("scripts/_thesis_theme.R")
 OUT <- "outputs/figures/appendix"; dir.create(OUT, recursive = TRUE, showWarnings = FALSE)
+
+# In-figure titles are kept short (the full descriptive caption lives in the
+# document, per the Cambridge appendix convention). wrap_title() breaks any
+# title that would otherwise overflow the panel width onto a second line.
+wrap_title <- function(x, width = 60) str_wrap(x, width = width)
 
 GENES <- c("BRCA1","BRCA2","PALB2","CHEK2","ATM","BARD1","RAD51C","RAD51D","TP53")
 
@@ -61,7 +66,7 @@ forest_panel <- function(df, title, sig = character(0), file, xmax = NULL) {
     scale_colour_manual(values = c(`TRUE` = unname(THESIS_PAL["signal"]),
                                    `FALSE` = "grey20"), guide = "none") +
     scale_x_log10() +
-    labs(x = "Odds ratio (95% CI), log scale", y = NULL, title = title) +
+    labs(x = "Odds ratio (95% CI), log scale", y = NULL, title = wrap_title(title)) +
     theme_thesis(grid = "x") +
     theme(axis.text.y = element_text(face = "italic"))
   if (!is.null(xmax)) p <- p + coord_cartesian(xlim = c(0.05, xmax))
@@ -82,7 +87,7 @@ BB <- "outputs/tables/BBD_truncating_FINAL.xlsx"
 forest_panel(read_forest(DL, "DCIS_truncating"),
   "Figure A1. DCIS, protein-truncating variants (n = 1,663)", c("ATM","BRCA2","CHEK2"), "figA1.png", 50)
 forest_panel(read_forest(MS, "DCIS_missense"),
-  "Figure A2. DCIS, missense variants (CADD >= 20; n = 1,663)", c("CHEK2","TP53"), "figA2.png", 12)
+  "Figure A2. DCIS, missense variants (CADD \u2265 20; n = 1,663)", c("CHEK2","TP53"), "figA2.png", 12)
 forest_panel(read_forest(BB, "BBD vs Controls"),
   "Figure A3. BBD, protein-truncating variants (n = 1,765)", character(0), "figA3.png", 2000)
 forest_panel(read_forest(MS, "BBD_missense"),
@@ -119,13 +124,15 @@ if (file.exists(PHENO)) {
     eur %>% filter(status == 2, .data[[mc]] == "Lobular") %>% transmute(age = ageInt, grp = "LCIS")) %>%
     mutate(grp = factor(grp, levels = c("BBD cases","Cancer-free controls","DCIS","LCIS")))
   means <- cohorts %>% group_by(grp) %>% summarise(m = mean(age), n = n(), .groups = "drop")
-  labs11 <- setNames(sprintf("%s (n = %s; mean %.1f y)", means$grp, format(means$n, big.mark=","), means$m), means$grp)
+  # trimws() removes the leading spaces format(big.mark) pads to the widest number.
+  labs11 <- setNames(sprintf("%s (n = %s; mean %.1f y)", means$grp,
+                             trimws(format(means$n, big.mark = ",")), means$m), means$grp)
   pA11 <- ggplot(cohorts, aes(age)) +
     geom_histogram(binwidth = 2.5, fill = THESIS_PAL["baseline"], colour = "white", linewidth = 0.2) +
     geom_vline(data = means, aes(xintercept = m), colour = THESIS_PAL["signal"], linewidth = 0.6, linetype = "dashed") +
-    facet_wrap(~ grp, scales = "free_y", labeller = labeller(grp = labs11)) +
+    facet_wrap(~ grp, scales = "free_y", labeller = labeller(grp = label_wrap_gen(width = 34))) +
     labs(x = "Age at interview or diagnosis (years)", y = "Number of women",
-         title = "Figure A11. Age distributions by cohort (quality-control check)") +
+         title = "Figure A11. Age distributions by cohort") +
     theme_thesis(grid = "y")
   save_fig(pA11, file.path(OUT, "figA11.png"), width = 7.4, height = 5.2)
 
@@ -134,7 +141,7 @@ if (file.exists(PHENO)) {
   pA12 <- ggplot(top, aes(n, reorder(study, n))) +
     geom_col(fill = THESIS_PAL["baseline"]) +
     labs(x = "Number of cancer-free controls contributed", y = NULL,
-         title = "Figure A12. Top 20 contributing studies (quality-control check)") +
+         title = "Figure A12. Top 20 contributing studies") +
     theme_thesis(grid = "x")
   save_fig(pA12, file.path(OUT, "figA12.png"), width = 6.4, height = 4.6)
 
@@ -184,7 +191,7 @@ pA13 <- ggplot(a13, aes(OR, gene, colour = spec)) +
   scale_colour_manual(values = THESIS_GROUPS, name = NULL) +
   scale_x_log10() +
   labs(x = "Odds ratio (95% CI), log scale", y = NULL,
-       title = "Figure A13. Ascertainment sensitivity of the DCIS truncating associations") +
+       title = wrap_title("Figure A13. Ascertainment sensitivity of the DCIS truncating associations")) +
   theme_thesis(grid = "x") + theme(axis.text.y = element_text(face = "italic"))
 save_fig(pA13, file.path(OUT, "figA13.png"), width = 6.6, height = 4.0)
 
@@ -201,7 +208,7 @@ pA14 <- ggplot(a14, aes(OR, dropped)) +
   geom_point(aes(colour = dropped %in% extremes), size = 2.6) +
   scale_colour_manual(values = c(`TRUE` = unname(THESIS_PAL["signal"]), `FALSE` = "grey20"), guide = "none") +
   labs(x = "ATM-DCIS odds ratio when that study is removed", y = NULL,
-       title = "Figure A14. Leave-one-study-out analysis of the ATM-DCIS association",
+       title = wrap_title("Figure A14. Leave-one-study-out analysis of the ATM-DCIS association"),
        caption = sprintf("%d leave-one-out refits; OR range %.2f-%.2f; full-data OR %.2f (red line); all p < 0.05.",
                          nrow(a14), min(a14$OR), max(a14$OR), full_or)) +
   theme_thesis(grid = "x")
